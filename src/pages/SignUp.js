@@ -23,8 +23,8 @@ const SignUp = () => {
     e.preventDefault();
   
     try {
-      // Use your deployed backend URL instead of localhost
-      const res = await axios.post('https://my-backend-app.vercel.app/api/auth/register', formData);
+      // Use your deployed backend URL
+      const res = await axios.post('/api/auth/register', formData);
   
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
@@ -37,10 +37,9 @@ const SignUp = () => {
         });
       }
     } catch (err) {
-      alert('Registration failed: ' + err.response.data.msg);
+      alert('Registration failed: ' + (err.response?.data?.msg || 'Unknown error'));
     }
   };
-  
 
   return (
     <div className="signup-container">
@@ -53,7 +52,6 @@ const SignUp = () => {
         <h2>Sign Up / Login</h2>
         <p>Lorem Ipsum is simply dummy text</p>
 
-        {/* Name */}
         <div className="input-field">
           <div className="input-icon-wrapper">
             <AiOutlineUser className="icon" />
@@ -68,7 +66,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Phone Input */}
         <div className="input-field">
           <div className="input-icon-wrapper">
             <AiOutlinePhone className="icon" />
@@ -83,7 +80,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Company Name */}
         <div className="input-field">
           <div className="input-icon-wrapper">
             <AiOutlineUsergroupAdd className="icon" />
@@ -98,7 +94,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Company Email */}
         <div className="input-field">
           <div className="input-icon-wrapper">
             <AiOutlineMail className="icon" />
@@ -113,7 +108,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Employee Size field */}
         <div className="input-field">
           <div className="input-icon-wrapper">
             <AiOutlineTeam className="icon" />
