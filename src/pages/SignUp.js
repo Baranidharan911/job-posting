@@ -24,7 +24,7 @@ const SignUp = () => {
   
     try {
       // Use your deployed backend URL instead of localhost
-      const res = await axios.post('https://your-backend-url.vercel.app/api/auth/register', formData);
+      const res = await axios.post('https://my-backend-app.vercel.app/api/auth/register', formData);
   
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
