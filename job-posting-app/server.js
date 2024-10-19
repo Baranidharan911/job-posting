@@ -9,6 +9,13 @@ connectDB();
 
 const app = express();
 
+app.use(cors({
+  origin: ['https://your-frontend-url.vercel.app'], // Vercel frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
+
 // No need for specific CORS configuration now, as the frontend and backend share the same domain on Vercel
 // app.use(cors());  // CORS config can be removed or made generic
 
