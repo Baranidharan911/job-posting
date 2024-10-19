@@ -10,7 +10,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: ['https://your-frontend-url.vercel.app'], // Vercel frontend URL
+  origin: ['https://job-posting-omega.vercel.app'], // Vercel frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
