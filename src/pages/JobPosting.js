@@ -38,14 +38,14 @@ const JobPosting = () => {
     const candidates = tags.map(tag => tag.text); // Collect candidate emails
   
     try {
-      const response = await fetch('http://localhost:5000/api/job/create', {
+      const response = await fetch('https://your-backend-url.vercel.app/api/job/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token, 
         },
         body: JSON.stringify({ ...formData, candidates }), 
-      });
+      });      
   
       if (!response.ok) {
         const errorResult = await response.json(); // Parse the error response as JSON

@@ -21,18 +21,16 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Post the form data to backend
-      const res = await axios.post('http://localhost:5000/api/auth/register', formData);
-
-      // Check if we receive a token, meaning the company is already verified
+      // Use your deployed backend URL instead of localhost
+      const res = await axios.post('https://your-backend-url.vercel.app/api/auth/register', formData);
+  
       if (res.data.token) {
-        localStorage.setItem('token', res.data.token); // Store JWT token in localStorage
+        localStorage.setItem('token', res.data.token);
         alert('Login successful. Redirecting to dashboard.');
         navigate('/dashboard');
       } else {
-        // If no token, OTP verification is required
         alert(res.data.msg);
         navigate('/otp-verification', {
           state: { companyEmail: formData.companyEmail, phoneNumber: formData.phone }
@@ -42,6 +40,7 @@ const SignUp = () => {
       alert('Registration failed: ' + err.response.data.msg);
     }
   };
+  
 
   return (
     <div className="signup-container">

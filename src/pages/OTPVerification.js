@@ -28,10 +28,10 @@ const OTPVerification = () => {
     const handleEmailVerify = async () => {
         try {
             console.log("Verifying Email OTP:", otpData.emailOtp); // Debugging email OTP
-            const res = await axios.post('http://localhost:5000/api/auth/verify-email-otp', {
-                companyEmail,
-                emailOtp: otpData.emailOtp,
-            });
+            const res = await axios.post('https://your-backend-url.vercel.app/api/auth/verify-email-otp', {
+              companyEmail,
+              emailOtp: otpData.emailOtp,
+            });            
 
             // If OTP is valid and returns a token, redirect the user
             if (res.data.token) {
@@ -51,7 +51,7 @@ const OTPVerification = () => {
     const handleMobileVerify = async () => {
         try {
             console.log("Verifying Mobile OTP:", mobileOTPInput); // Debugging mobile OTP
-            const res = await axios.post('http://localhost:5000/api/auth/verify-mobile-otp', {
+            const res = await axios.post('https://your-backend-url.vercel.app/api/auth/verify-email-otp', {
                 companyEmail,  // Ensure that company email is passed correctly
                 mobileOtp: mobileOTPInput,
             });
