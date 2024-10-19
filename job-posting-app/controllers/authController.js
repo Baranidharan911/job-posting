@@ -51,10 +51,15 @@ exports.registerCompany = async (req, res) => {
     // Send OTP to email
     await sendOTPEmail(companyEmail, emailOtp);
 
-    // Send OTP to mobile via Twilio
-    await sendOTPMobile(phone);
+    // Attempt to send OTP to mobile via Twilio
+    try {
+      await sendOTPMobile(phone);
+      res.status(200).json({ msg: 'Company registered. Verify OTP to continue.', companyEmail });
+    } catch (twilioError) {
+      console.error('Twilio error:', twilioError);
+      res.status(200).json({ msg: 'Company registered. Email verification required. Mobile verification skipped due to Twilio trial limitations.', companyEmail });
+    }
 
-    res.status(200).json({ msg: 'Company registered. Verify OTP to continue.', companyEmail });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

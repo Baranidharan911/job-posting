@@ -6,10 +6,8 @@ const CompanySchema = new mongoose.Schema({
   companyName: { type: String, required: true },
   companyEmail: { type: String, required: true, unique: true },
   employeeSize: { type: String, required: true },
-  password: { type: String, required: true },
-  isVerified: { type: Boolean, default: false },
-  emailOtp: { type: String },
-  mobileOtp: { type: String }
+  emailOtp: { type: String }, // Adding OTP fields
+  isVerified: { type: Boolean, default: false }, // Optional field to track whether the company is verified
 });
 
 module.exports = mongoose.model('Company', CompanySchema);

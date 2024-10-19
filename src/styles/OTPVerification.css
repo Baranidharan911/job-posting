@@ -1,30 +1,35 @@
-/* OTPVerification.css */
+/* Container layout */
 .otp-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 0 5rem;
-    background-color: #f8f9fa;
+    background-color: white;
     font-family: 'Arial', sans-serif;
 }
 
 .otp-left {
     width: 50%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .otp-text {
-    font-size: 16px;
-    color: #555;
+    font-size: 18px;
+    color: #333;
     line-height: 1.6;
+    text-align: left;
 }
 
+/* Form layout */
 .otp-form {
     width: 400px;
     padding: 40px;
     background-color: white;
     border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(0, 0, 255, 0.2);
     display: flex;
     flex-direction: column;
@@ -33,7 +38,7 @@
 
 .otp-form h2 {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
     color: #333;
 }
@@ -42,34 +47,27 @@
     font-size: 14px;
     margin-bottom: 20px;
     color: #777;
+    text-align: center;
 }
 
-.otp-field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* Input wrapper for default state */
-.input-wrapper {
+/* Input field styles */
+.input-icon-wrapper {
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-    width: 100%;
-    transition: border-color 0.3s ease;
+    margin-top: 20px;
 }
 
-.input-wrapper .icon {
+.input-icon-wrapper .icon {
     margin-right: 10px;
     font-size: 20px;
     color: #555;
 }
 
-.input-wrapper input {
+.input-icon-wrapper input {
     width: 100%;
     border: none;
     background-color: transparent;
@@ -78,35 +76,11 @@
     color: #333;
 }
 
-/* Style for Verified input */
-.input-wrapper.verified {
-    border: 1px solid #28a745; /* Green border for verified */
-    background-color: #e6f4ea;
+.input-icon-wrapper input::placeholder {
+    color: #999;
 }
 
-.input-wrapper.verified .icon {
-    color: #28a745; /* Green check icon */
-}
-
-.input-wrapper.verified input {
-    color: #28a745;
-}
-
-/* Style for Unverified (error) input */
-.input-wrapper.error {
-    border: 1px solid #dc3545; /* Red border for error */
-    background-color: #f8d7da;
-}
-
-.input-wrapper.error .icon {
-    color: #dc3545; /* Red error icon */
-}
-
-.input-wrapper.error input {
-    color: #dc3545;
-}
-
-/* Verify button */
+/* Button styles */
 .verify-btn {
     width: 100%;
     padding: 12px;
@@ -116,17 +90,37 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 8px;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .verify-btn:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
 }
 
-/* Recaptcha container */
-#recaptcha-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+.verify-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .otp-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .otp-left {
+        width: 100%;
+        text-align: center;
+    }
+
+    .otp-form {
+        width: 100%;
+    }
 }

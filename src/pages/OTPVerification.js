@@ -9,6 +9,7 @@ const OTPVerification = () => {
         emailOtp: '',
     });
     const [mobileOTPInput, setMobileOTPInput] = useState('');
+    const [message, setMessage] = useState(''); // To show success or error messages
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -31,7 +32,15 @@ const OTPVerification = () => {
                 companyEmail,
                 emailOtp: otpData.emailOtp,
             });
-            alert(res.data.msg);
+
+            // If OTP is valid and returns a token, redirect the user
+            if (res.data.token) {
+                localStorage.setItem('token', res.data.token); // Store the JWT token
+                alert('Email verified successfully. Redirecting to dashboard.');
+                navigate('/dashboard');
+            } else {
+                setMessage(res.data.msg); // Show the message returned from the server
+            }
         } catch (err) {
             console.error("Error during email OTP verification:", err); // Debugging error
             alert('Email OTP verification failed: ' + err.response.data.msg);
@@ -46,12 +55,15 @@ const OTPVerification = () => {
                 companyEmail,  // Ensure that company email is passed correctly
                 mobileOtp: mobileOTPInput,
             });
-            console.log("Mobile OTP verification response:", res.data); // Debugging success response
-            alert(res.data.msg);
 
-            // Save the token in local storage
-            localStorage.setItem('token', res.data.token);
-            navigate('/dashboard');
+            // If OTP is valid and returns a token, redirect the user
+            if (res.data.token) {
+                localStorage.setItem('token', res.data.token); // Store the JWT token
+                alert('Mobile verified successfully. Redirecting to dashboard.');
+                navigate('/dashboard');
+            } else {
+                setMessage(res.data.msg); // Show the message returned from the server
+            }
         } catch (err) {
             console.error("Error during mobile OTP verification:", err); // Debugging error
             alert('Mobile OTP verification failed: ' + err.response.data.msg);
@@ -80,22 +92,31 @@ const OTPVerification = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <button type="button" onClick={handleEmailVerify}>Verify Email OTP</button>
+                    <button type="button" className="verify-btn" onClick={handleEmailVerify}>
+                        Verify Email OTP
+                    </button>
                 </div>
 
-                {/* Mobile OTP field */}
-                <div className="otp-field">
-                    <div className="input-icon-wrapper">
-                        <AiOutlinePhone className="icon" />
-                        <input
-                            type="text"
-                            placeholder="Enter Mobile OTP"
-                            value={mobileOTPInput}
-                            onChange={(e) => setMobileOTPInput(e.target.value)}
-                        />
+                {/* Mobile OTP field, shown conditionally */}
+                {phoneNumber && (
+                    <div className="otp-field">
+                        <div className="input-icon-wrapper">
+                            <AiOutlinePhone className="icon" />
+                            <input
+                                type="text"
+                                placeholder="Enter Mobile OTP"
+                                value={mobileOTPInput}
+                                onChange={(e) => setMobileOTPInput(e.target.value)}
+                            />
+                        </div>
+                        <button type="button" className="verify-btn" onClick={handleMobileVerify}>
+                            Verify Mobile OTP
+                        </button>
                     </div>
-                    <button type="button" onClick={handleMobileVerify}>Verify Mobile OTP</button>
-                </div>
+                )}
+
+                {/* Display success or error messages */}
+                {message && <p className="message">{message}</p>}
             </form>
         </div>
     );
