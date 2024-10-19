@@ -1,0 +1,170 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+}
+
+/* Container */
+.jobposting-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafc;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 80px;
+  background-color: #fcfdfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .home-icon {
+  cursor: pointer;
+}
+
+.sidebar .home-image {
+  width: 24px;
+  height: 24px;
+}
+
+/* Job Form Section */
+.job-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-form form {
+  width: 600px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 20px;
+}
+
+.job-form label {
+  font-size: 16px;
+  color: #333;
+  align-self: center;
+}
+
+.job-form input, 
+.job-form textarea, 
+.job-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+.job-form input:focus,
+.job-form textarea:focus,
+.job-form select:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #ffffff;
+}
+
+.job-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.job-form input[type="date"] {
+  padding: 10px;
+}
+
+.job-form button {
+  grid-column: span 2;
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.job-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the Tag Input */
+.ReactTags__tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.ReactTags__tag {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+.ReactTags__tagInput input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 8px;
+  flex: 1;
+}
+
+.ReactTags__remove {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.ReactTags__tagInput {
+  display: flex;
+  flex: 1;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .job-form form {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    width: 60px;
+  }
+}

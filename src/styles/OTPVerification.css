@@ -1,0 +1,132 @@
+/* OTPVerification.css */
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 5rem;
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.otp-left {
+    width: 50%;
+}
+
+.otp-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.otp-form {
+    width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.otp-form h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.otp-form p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.otp-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Input wrapper for default state */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.input-wrapper .icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #555;
+}
+
+.input-wrapper input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Style for Verified input */
+.input-wrapper.verified {
+    border: 1px solid #28a745; /* Green border for verified */
+    background-color: #e6f4ea;
+}
+
+.input-wrapper.verified .icon {
+    color: #28a745; /* Green check icon */
+}
+
+.input-wrapper.verified input {
+    color: #28a745;
+}
+
+/* Style for Unverified (error) input */
+.input-wrapper.error {
+    border: 1px solid #dc3545; /* Red border for error */
+    background-color: #f8d7da;
+}
+
+.input-wrapper.error .icon {
+    color: #dc3545; /* Red error icon */
+}
+
+.input-wrapper.error input {
+    color: #dc3545;
+}
+
+/* Verify button */
+.verify-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.verify-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Recaptcha container */
+#recaptcha-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}

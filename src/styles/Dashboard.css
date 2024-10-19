@@ -1,0 +1,78 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafc; /* Light background */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 80px;
+  background-color: #ffffff; /* White background for the sidebar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the sidebar */
+}
+
+/* Home Icon (now an image) */
+.sidebar .home-icon {
+  cursor: pointer;
+}
+
+.sidebar .home-image {
+  width: 40px; /* Adjust the size of the image */
+  position: relative;
+  top: -250px;
+  height: 40px; /* Ensure consistent size */
+  object-fit: contain; /* Ensure the image fits well inside */
+  transition: transform 0.2s ease;
+}
+
+/* Hover effect on home image */
+.sidebar .home-image:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px; /* Adjust padding for spacing */
+}
+
+/* Button Styling */
+.btn-create {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect on the button */
+.btn-create:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
