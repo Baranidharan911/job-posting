@@ -28,15 +28,15 @@ const JobPosting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-
+  
     const token = localStorage.getItem('token');
     if (!token) {
       setMessage('You must be logged in to post a job.');
       return;
     }
-
+  
     const candidates = tags.map(tag => tag.text); // Collect candidate emails
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/job/create', {
         method: 'POST',
@@ -46,26 +46,28 @@ const JobPosting = () => {
         },
         body: JSON.stringify({ ...formData, candidates }), 
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setMessage('Job posted successfully!');
-        setFormData({
-          title: '',
-          description: '',
-          experienceLevel: '',
-          endDate: '',
-        });
-        setTags([]); 
-      } else {
-        setMessage(`Failed to post job: ${result.msg}`);
+  
+      if (!response.ok) {
+        const errorResult = await response.json(); // Parse the error response as JSON
+        setMessage(`Failed to post job: ${errorResult.msg}`);
+        return;
       }
+  
+      const result = await response.json();
+      setMessage('Job posted successfully! Emails sent to candidates.');
+      setFormData({
+        title: '',
+        description: '',
+        experienceLevel: '',
+        endDate: '',
+      });
+      setTags([]); 
+  
     } catch (error) {
       setMessage('Error occurred while posting the job.');
       console.error('Error:', error);
     }
-  };
+  };  
 
   // React Tag Input Handlers
   const handleDelete = (i) => {

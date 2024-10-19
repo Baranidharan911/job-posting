@@ -11,7 +11,6 @@ const SignUp = () => {
     companyName: '',
     companyEmail: '',
     employeeSize: '',
-    password: ''
   });
 
   const navigate = useNavigate();
@@ -24,12 +23,21 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      // Post the form data to backend, where Twilio will handle sending OTP
+      // Post the form data to backend
       const res = await axios.post('http://localhost:5000/api/auth/register', formData);
-      alert(res.data.msg);
-      navigate('/otp-verification', {
-        state: { companyEmail: formData.companyEmail, phoneNumber: formData.phone }
-      });
+
+      // Check if we receive a token, meaning the company is already verified
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token); // Store JWT token in localStorage
+        alert('Login successful. Redirecting to dashboard.');
+        navigate('/dashboard');
+      } else {
+        // If no token, OTP verification is required
+        alert(res.data.msg);
+        navigate('/otp-verification', {
+          state: { companyEmail: formData.companyEmail, phoneNumber: formData.phone }
+        });
+      }
     } catch (err) {
       alert('Registration failed: ' + err.response.data.msg);
     }
@@ -43,7 +51,7 @@ const SignUp = () => {
         </p>
       </div>
       <form className="signup-form" onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+        <h2>Sign Up / Login</h2>
         <p>Lorem Ipsum is simply dummy text</p>
 
         {/* Name */}
@@ -81,12 +89,12 @@ const SignUp = () => {
           <div className="input-icon-wrapper">
             <AiOutlineUsergroupAdd className="icon" />
             <input
-                type="text"
-                name="companyName"
-                placeholder="Company Name"
-                value={formData.companyName}
-                onChange={handleChange}
-                required
+              type="text"
+              name="companyName"
+              placeholder="Company Name"
+              value={formData.companyName}
+              onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -96,12 +104,12 @@ const SignUp = () => {
           <div className="input-icon-wrapper">
             <AiOutlineMail className="icon" />
             <input
-                type="email"
-                name="companyEmail"
-                placeholder="Company Email"
-                value={formData.companyEmail}
-                onChange={handleChange}
-                required
+              type="email"
+              name="companyEmail"
+              placeholder="Company Email"
+              value={formData.companyEmail}
+              onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -115,21 +123,6 @@ const SignUp = () => {
               name="employeeSize"
               placeholder="Employee Size"
               value={formData.employeeSize}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-
-        {/* Password field */}
-        <div className="input-field">
-          <div className="input-icon-wrapper">
-            <AiOutlineUser className="icon" />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
               onChange={handleChange}
               required
             />
